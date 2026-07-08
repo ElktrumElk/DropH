@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { dragAppend, dragEnd, dragStart } from '@/lib/global/drag'
 import { isPropertyMode } from '@/lib/global/variables'
 import { useRerender } from '@/lib/reactive/render-vue'
 import { htmlDictionary } from '@/lib/tags/tags'
@@ -49,7 +50,13 @@ const handleFilter = () => {
           <h3 class="sec-title">{{ section.section }}</h3>
         </div>
         <div class="tags-inner-cnt" v-for="(tag, indx) in section.tags" :key="indx">
-          <li>
+          <li
+            class="tags"
+            draggable="true"
+            @dragend="(e) => dragEnd(e)"
+            @dragstart="() => dragStart()"
+            @drag="(e) => dragAppend(e)"
+          >
             <div class="tg-ic">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -171,10 +178,16 @@ const handleFilter = () => {
   gap: 0.75rem;
   border-radius: 0.6rem;
   padding: 0.5rem;
-  background: var(--bg-cl);
-
   width: 100%;
   user-select: none;
+
+  border: 1px solid transparent;
+  background-image:
+    linear-gradient(var(--bg-cl), var(--bg-cl)),
+    linear-gradient(to right, rgba(255, 68, 0, 0.245), rgba(255, 166, 0, 0.216));
+  background-clip: padding-box, border-box;
+
+  background-origin: padding-box, border-box;
 }
 
 .tg-ic {
@@ -189,7 +202,6 @@ const handleFilter = () => {
   background: var(--border-cl);
   color: var(--button-cl);
   padding: 0.25rem;
-  box-sizing: border-box;
 }
 
 .cnt {
