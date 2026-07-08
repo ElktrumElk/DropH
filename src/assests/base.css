@@ -8,6 +8,7 @@
   --border-cl: #dce3e1;
   --shadow-cl: rgba(9, 20, 19, 0.06);
 
+
   --font-display: 'Inter', system-ui, sans-serif;
   --font-body: 'Roboto', system-ui, sans-serif;
 
@@ -47,6 +48,7 @@
   box-sizing: border-box;
   font-size: var(--fs-base);
   margin: 0;
+  font-family: var(--font-display);
 }
 
 body {
