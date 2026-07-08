@@ -1,9 +1,21 @@
 import { ref } from 'vue'
 import { useRerender } from '../reactive/render-vue'
 
-export const isPropertyMode = false
+export const [isPropertyMode, setProperty] = useRerender(false)
 export const [isHashildren, setIsChildren] = useRerender(false)
 export const viewBox = ref<HTMLDivElement>()
+export const selectionBox = ref<HTMLElement>();
+
+
+export interface OverlayRect {
+  left: number
+  top: number
+  width: number
+  height: number
+}
+
+export const overlayRect = ref<OverlayRect>({ left: 0, top: 0, width: 0, height: 0 })
+export const isOverlayVisible = ref(false)
 
 export const createElement = (
   parent: HTMLElement,
@@ -54,7 +66,19 @@ export class BoxElements {
     viewBox.value.addEventListener('click', (e) => {
       const target = (e.target as HTMLElement).closest('.default-element') as HTMLElement
       if (target) {
-        console.log(BoxElements.elements[`${target.dataset.key}`])
+        const vb = viewBox.value!
+        const vbRect = vb.getBoundingClientRect()
+        const elRect = target.getBoundingClientRect()
+
+        overlayRect.value = {
+          left: elRect.left - vbRect.left,
+          top: elRect.top - vbRect.top,
+          width: elRect.width,
+          height: elRect.height,
+        }
+
+        isOverlayVisible.value = true
+        setProperty(true)
       }
     })
   }

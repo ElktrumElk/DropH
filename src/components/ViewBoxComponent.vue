@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { isHashildren, viewBox } from '@/lib/global/variables'
+import SelectionOverlay from '@/slection/SelectionOverlay.vue'
 </script>
 
 <template>
   <div class="view-box" ref="viewBox">
     <span v-if="!isHashildren">Drag and Drop</span>
+    <SelectionOverlay />
   </div>
 </template>
 
