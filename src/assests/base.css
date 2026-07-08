@@ -1,0 +1,70 @@
+:root {
+  --bg-cl: #f4f7f6;
+  --component-cl: #ffffff;
+  --button-cl: #285a48;
+  --button-hover-cl: #1e4336;
+  --text-cl: #091413;
+  --text-muted-cl: #536360;
+  --border-cl: #dce3e1;
+  --shadow-cl: rgba(9, 20, 19, 0.06);
+
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Roboto', system-ui, sans-serif;
+
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 0.8rem + 0.38vw, 1rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
+  --fs-md: clamp(1.25rem, 1.15rem + 0.75vw, 1.5rem);
+  --fs-lg: clamp(1.75rem, 1.5rem + 1.25vw, 2.25rem);
+  --fs-xl: clamp(2.25rem, 2rem + 2vw, 3.5rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    --bg-cl: #091413;
+    --component-cl: #11221f;
+    --button-cl: #285a48;
+    --button-hover-cl: #32705a;
+    --text-cl: #ecf2f0;
+    --text-muted-cl: #8a9d99;
+    --border-cl: #1d3631;
+    --shadow-cl: rgba(0, 0, 0, 0.5);
+  }
+}
+
+:root.dark {
+  --bg-cl: #091413;
+  --component-cl: #11221f;
+  --button-cl: #285a48;
+  --button-hover-cl: #32705a;
+  --text-cl: #ecf2f0;
+  --text-muted-cl: #8a9d99;
+  --border-cl: #1d3631;
+  --shadow-cl: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  font-size: var(--fs-base);
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background-color: var(--bg-cl);
+  color: var(--text-cl);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
